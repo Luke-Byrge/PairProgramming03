@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PairProgramming03</string>
+    <string name="cameraButton">Open Camera</string>
 </resources>
