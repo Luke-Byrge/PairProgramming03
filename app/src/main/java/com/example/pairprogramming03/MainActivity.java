@@ -1,6 +1,7 @@
 package com.example.pairprogramming03;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,12 +14,16 @@ import android.widget.ImageView;
 public class MainActivity extends AppCompatActivity {
 
     ImageView imageView;
+    ConstraintLayout layout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        layout = (ConstraintLayout)findViewById(R.id.constraintlayout);
         Button cameraButton = (Button)findViewById(R.id.cameraButton);
         imageView = (ImageView)findViewById(R.id.imageView);
 
@@ -29,6 +34,31 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 100);
 
             }
+        });
+
+        layout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this){
+            @Override
+            public void onSwipeLeft(){
+                super.onSwipeLeft();
+                imageView.setRotation(-90);
+            }
+            @Override
+            public void onSwipeRight(){
+                super.onSwipeRight();
+                imageView.setRotation(90);
+            }
+            @Override
+            public void onSwipeUp(){
+                super.onSwipeUp();
+                imageView.setRotation(0);
+            }
+
+            @Override
+            public void onSwipeDown(){
+                super.onSwipeDown();
+                imageView.setRotation(180);
+            }
+
         });
     }
 
